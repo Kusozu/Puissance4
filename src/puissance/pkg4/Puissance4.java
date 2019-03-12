@@ -4,10 +4,10 @@ package puissance.pkg4;
 import java.util.Scanner;
 
 public class Puissance4 {
-    static int hauteur = 6;
-    static int longueur = 7;
-    static int LigneDuBas = hauteur -1;
-    static char[][] plateau = new char[hauteur][longueur];
+    final static int HAUTEUR = 6;
+    final static int LONGUEUR = 7;
+    final static int LIGNE_DU_BAS = HAUTEUR -1;
+    static char[][] plateau = new char[HAUTEUR][LONGUEUR];
     static Scanner scanner = new Scanner(System.in);
         
     public static void main(String[] args){
@@ -41,16 +41,16 @@ public class Puissance4 {
     }
     
     public static void creationPlateau(){           //Création du plateau de jeu
-        for (int h = 0; h < hauteur; h += 1) {
-            for (int l = 0; l < longueur; l += 1) {
+        for (int h = 0; h < HAUTEUR; h += 1) {
+            for (int l = 0; l < LONGUEUR; l += 1) {
                 plateau[h][l] = '_';
             }
         }
     }
     
     public static void printPlateau(){              //Imprime le plateau
-        for(int h = 0; h < hauteur; h++){
-            for(int l = 0; l < longueur; l++){
+        for(int h = 0; h < HAUTEUR; h++){
+            for(int l = 0; l < LONGUEUR; l++){
                 System.out.print(plateau[h][l] + " ");
             }
             System.out.println();
@@ -65,22 +65,22 @@ public class Puissance4 {
         int compteur = 1;
         
         while(true){
-            if(colonne > longueur - 1){
+            if(colonne > LONGUEUR - 1){
                 System.out.println("Tu t'es trompé de valeur !");
                 break;
             }
             
-            if(plateau[LigneDuBas][colonne] == '_'){
-                plateau[LigneDuBas][colonne] = 'X';
+            if(plateau[LIGNE_DU_BAS][colonne] == '_'){
+                plateau[LIGNE_DU_BAS][colonne] = 'X';
                 break;
-            }else if(plateau[LigneDuBas][colonne] == 'X' || plateau[LigneDuBas][colonne] == 'O'){
-                if(plateau[LigneDuBas - compteur][colonne] == '_'){
-                    plateau[LigneDuBas - compteur][colonne] = 'X';
+            }else if(plateau[LIGNE_DU_BAS][colonne] == 'X' || plateau[LIGNE_DU_BAS][colonne] == 'O'){
+                if(plateau[LIGNE_DU_BAS - compteur][colonne] == '_'){
+                    plateau[LIGNE_DU_BAS - compteur][colonne] = 'X';
                 break;
                 }
             }
             compteur++;
-            if(hauteur - compteur == 0){
+            if(HAUTEUR - compteur == 0){
                 System.out.println("La colonne est remplie");
                 break;
             }           
@@ -93,22 +93,22 @@ public class Puissance4 {
         int colonne = scanner.nextInt();
         
         while(true){
-            if(colonne > longueur){
+            if(colonne > LONGUEUR){
                 System.out.println("Tu t'es trompé de valeur !");
                 break;
             }
             
-            if(plateau[LigneDuBas][colonne] == '_'){
-                plateau[LigneDuBas][colonne] = 'O';
+            if(plateau[LIGNE_DU_BAS][colonne] == '_'){
+                plateau[LIGNE_DU_BAS][colonne] = 'O';
                 break;
-            }else if(plateau[LigneDuBas][colonne] == 'X' || plateau[LigneDuBas][colonne] == 'O'){
-                if(plateau[LigneDuBas - compteur][colonne] == '_'){
-                    plateau[LigneDuBas - compteur][colonne] = 'O';
+            }else if(plateau[LIGNE_DU_BAS][colonne] == 'X' || plateau[LIGNE_DU_BAS][colonne] == 'O'){
+                if(plateau[LIGNE_DU_BAS - compteur][colonne] == '_'){
+                    plateau[LIGNE_DU_BAS - compteur][colonne] = 'O';
                 break;
                 }
             }
             compteur++;
-            if(hauteur - compteur == 0){
+            if(HAUTEUR - compteur == 0){
                 System.out.println("La colonne est remplie");
                 break;
             }
@@ -121,8 +121,8 @@ public class Puissance4 {
         int compteur = 0;
        
         while(!aGagné){
-           for(int h = 0; h < hauteur; h++){
-               for(int l = 0; l < longueur; l++){
+           for(int h = 0; h < HAUTEUR; h++){
+               for(int l = 0; l < LONGUEUR; l++){
                    if(plateau[h][l] == 'X'){
                        compteur++;
                    }else{
@@ -145,8 +145,8 @@ public class Puissance4 {
         int compteur = 0;
        
         while(!aGagné){
-           for(int h = 0; h < hauteur; h++){
-               for(int l = 0; l < longueur; l++){
+           for(int h = 0; h < HAUTEUR; h++){
+               for(int l = 0; l < LONGUEUR; l++){
                    if(plateau[h][l] == 'O'){
                        compteur++;
                    }else{
@@ -169,8 +169,8 @@ public class Puissance4 {
         int compteur = 0;
         
         while(!aGagné){
-            for(int l = 0; l < longueur; l++){
-                for(int h = 0; h < hauteur; h++){
+            for(int l = 0; l < LONGUEUR; l++){
+                for(int h = 0; h < HAUTEUR; h++){
                     if(plateau[h][l] == 'X'){
                         compteur++;
                     }else{
@@ -193,8 +193,8 @@ public class Puissance4 {
         int compteur = 0;
         
         while(!aGagné){
-            for(int l = 0; l < longueur; l++){
-                for(int h = 0; h < hauteur; h++){
+            for(int l = 0; l < LONGUEUR; l++){
+                for(int h = 0; h < HAUTEUR; h++){
                     if(plateau[h][l] == 'O'){
                         compteur++;
                     }else{
@@ -220,13 +220,13 @@ public class Puissance4 {
         boolean verif = false;
         
         while(!aGagné){
-            for(int l = 0; l < longueur; l++){
-                for(int h = 0; h < hauteur; h++){
+            for(int l = 0; l < LONGUEUR; l++){
+                for(int h = 0; h < HAUTEUR; h++){
                     if(plateau[h][l] == 'X'){
                         compteur++;
                         verif = true;
                         while(verif){
-                            if(l + compteurColonne <= longueur - 1 && h + compteurLigne <= hauteur - 1){
+                            if(l + compteurColonne <= LONGUEUR - 1 && h + compteurLigne <= HAUTEUR - 1){
                                 if(plateau[h + compteurLigne][l + compteurColonne] == 'X'){
                                     compteur++;
                                 }
@@ -234,7 +234,7 @@ public class Puissance4 {
                             compteurColonne++;
                             compteurLigne++;
                             
-                            if(compteurColonne == longueur - 1 || compteurLigne == hauteur -1){
+                            if(compteurColonne == LONGUEUR - 1 || compteurLigne == HAUTEUR -1){
                                 verif = false;
                                 break;
                             }
@@ -269,13 +269,13 @@ public class Puissance4 {
         boolean verif = false;
         
         while(!aGagné){
-            for(int x = 0; x < longueur; x++){
-                for(int y = 0; y < hauteur; y++){
+            for(int x = 0; x < LONGUEUR; x++){
+                for(int y = 0; y < HAUTEUR; y++){
                     if(plateau[y][x] == 'O'){
                         compteur++;
                         verif = true;
                         while(verif){
-                            if(x + compteurColonne <= longueur - 1 && y + compteurLigne <= hauteur - 1){
+                            if(x + compteurColonne <= LONGUEUR - 1 && y + compteurLigne <= HAUTEUR - 1){
                                 if(plateau[y + compteurLigne][x + compteurColonne] == 'O'){
                                     compteur++;
                                 }
@@ -283,7 +283,7 @@ public class Puissance4 {
                             compteurColonne++;
                             compteurLigne++;
                             
-                            if(compteurColonne == longueur - 1 || compteurLigne == hauteur -1){
+                            if(compteurColonne == LONGUEUR - 1 || compteurLigne == HAUTEUR -1){
                                 verif = false;
                                 break;
                             }
@@ -318,8 +318,8 @@ public class Puissance4 {
         boolean verif = false;
         
         while(!aGagné){
-            for(int l = 0; l < longueur; l++){
-                for(int h = 0; h < hauteur; h++){
+            for(int l = 0; l < LONGUEUR; l++){
+                for(int h = 0; h < HAUTEUR; h++){
                     if(plateau[h][l] == 'X'){
                         compteur++;
                         verif = true;
@@ -332,7 +332,7 @@ public class Puissance4 {
                             compteurColonne++;
                             compteurLigne++;
                             
-                            if(compteurColonne == longueur - 1 || compteurLigne == hauteur -1){
+                            if(compteurColonne == LONGUEUR - 1 || compteurLigne == HAUTEUR -1){
                                 verif = false;
                                 break;
                             }
@@ -367,8 +367,8 @@ public class Puissance4 {
         boolean verif = false;
         
         while(!aGagné){
-            for(int l = 0; l < longueur; l++){
-                for(int h = 0; h < hauteur; h++){
+            for(int l = 0; l < LONGUEUR; l++){
+                for(int h = 0; h < HAUTEUR; h++){
                     if(plateau[h][l] == 'O'){
                         compteur++;
                         verif = true;
@@ -381,7 +381,7 @@ public class Puissance4 {
                             compteurColonne++;
                             compteurLigne++;
                             
-                            if(compteurColonne == longueur - 1 || compteurLigne == hauteur -1){
+                            if(compteurColonne == LONGUEUR - 1 || compteurLigne == HAUTEUR -1){
                                 verif = false;
                                 break;
                             }
