@@ -7,58 +7,58 @@ public class Puissance4 {
     static int hauteur = 6;
     static int longueur = 7;
     static int LigneDuBas = hauteur -1;
-    static String[][] plateau = new String[hauteur][longueur];
+    static char[][] plateau = new char[hauteur][longueur];
     static Scanner scanner = new Scanner(System.in);
         
     public static void main(String[] args){
         
-        CreationPlateau();       
+        creationPlateau();       
         System.out.println("Choisit une colonne entre 0 et 6");                       
-        PrintPlateau();
+        printPlateau();
         
-        boolean indicateur = true;
+        boolean aGagné = false;
 
        
-        while(indicateur){
+        while(!aGagné){
             
-            TourX();
-            PrintPlateau();
+            tourX();
+            printPlateau();
            
-            if(!VerifX()){
-                indicateur = false; 
+            if(verifX()){
+                aGagné = true; 
                 break; 
             }
            
-            TourO();
-            PrintPlateau();
+            tourO();
+            printPlateau();
 
-            if(!VerifO()){
-                indicateur = false;
+            if(verifO()){
+                aGagné = true;
                 break;
             }
         }
                                                       
     }
     
-    public static void CreationPlateau(){           //Création du plateau de jeu
+    public static void creationPlateau(){           //Création du plateau de jeu
         for (int h = 0; h < hauteur; h += 1) {
             for (int l = 0; l < longueur; l += 1) {
-                plateau[h][l] = "_ ";
+                plateau[h][l] = '_';
             }
         }
     }
     
-    public static void PrintPlateau(){              //Imprime le plateau
+    public static void printPlateau(){              //Imprime le plateau
         for(int h = 0; h < hauteur; h++){
             for(int l = 0; l < longueur; l++){
-                System.out.print(plateau[h][l]);
+                System.out.print(plateau[h][l] + " ");
             }
             System.out.println();
         }
         System.out.println();
     }
     
-    public static void TourX(){                    
+    public static void tourX(){                    
         
         System.out.println("Au tour du joueur X");
         int colonne = scanner.nextInt();
@@ -70,12 +70,12 @@ public class Puissance4 {
                 break;
             }
             
-            if(plateau[LigneDuBas][colonne] == "_ "){
-                plateau[LigneDuBas][colonne] = "X ";
+            if(plateau[LigneDuBas][colonne] == '_'){
+                plateau[LigneDuBas][colonne] = 'X';
                 break;
-            }else if(plateau[LigneDuBas][colonne] == "X " || plateau[LigneDuBas][colonne] == "O "){
-                if(plateau[LigneDuBas - compteur][colonne] == "_ "){
-                    plateau[LigneDuBas - compteur][colonne] = "X ";
+            }else if(plateau[LigneDuBas][colonne] == 'X' || plateau[LigneDuBas][colonne] == 'O'){
+                if(plateau[LigneDuBas - compteur][colonne] == '_'){
+                    plateau[LigneDuBas - compteur][colonne] = 'X';
                 break;
                 }
             }
@@ -87,7 +87,7 @@ public class Puissance4 {
         }
     }
     
-    public static void TourO(){
+    public static void tourO(){
         int compteur = 1;
         System.out.println("Au tour du joueur O");
         int colonne = scanner.nextInt();
@@ -98,12 +98,12 @@ public class Puissance4 {
                 break;
             }
             
-            if(plateau[LigneDuBas][colonne] == "_ "){
-                plateau[LigneDuBas][colonne] = "O ";
+            if(plateau[LigneDuBas][colonne] == '_'){
+                plateau[LigneDuBas][colonne] = 'O';
                 break;
-            }else if(plateau[LigneDuBas][colonne] == "X " || plateau[LigneDuBas][colonne] == "O "){
-                if(plateau[LigneDuBas - compteur][colonne] == "_ "){
-                    plateau[LigneDuBas - compteur][colonne] = "O ";
+            }else if(plateau[LigneDuBas][colonne] == 'X' || plateau[LigneDuBas][colonne] == 'O'){
+                if(plateau[LigneDuBas - compteur][colonne] == '_'){
+                    plateau[LigneDuBas - compteur][colonne] = 'O';
                 break;
                 }
             }
@@ -115,119 +115,119 @@ public class Puissance4 {
         }
     }
     
-    public static boolean VictoireXHorizontal(){
+    public static boolean victoireXHorizontal(){
        
-        boolean indicateur = true;
+        boolean aGagné = false;
         int compteur = 0;
        
-        while(indicateur){
+        while(!aGagné){
            for(int h = 0; h < hauteur; h++){
                for(int l = 0; l < longueur; l++){
-                   if(plateau[h][l] == "X "){
+                   if(plateau[h][l] == 'X'){
                        compteur++;
                    }else{
                        compteur = 0;
                    }
                    if(compteur >= 4){
                        System.out.println("Joueur X gagne!");
-                       indicateur = false;
+                       aGagné = true;
                    }
                }
            }
            break;
        }
-       return indicateur;
+       return aGagné;
     }
     
-    public static boolean VictoireOHorizontal(){
+    public static boolean victoireOHorizontal(){
         
-        boolean indicateur = true;
+        boolean aGagné = false;
         int compteur = 0;
        
-        while(indicateur){
+        while(!aGagné){
            for(int h = 0; h < hauteur; h++){
                for(int l = 0; l < longueur; l++){
-                   if(plateau[h][l] == "O "){
+                   if(plateau[h][l] == 'O'){
                        compteur++;
                    }else{
                        compteur = 0;
                    }
                    if(compteur >= 4){
                        System.out.println("Joueur O gagne!");
-                       indicateur = false;
+                       aGagné = true;
                    }
                }
            }
            break;
        }
-       return indicateur;
+       return aGagné;
     }
     
-    public static boolean VictoireXVertical(){
+    public static boolean victoireXVertical(){
         
-        boolean indicateur = true;
+        boolean aGagné = false;
         int compteur = 0;
         
-        while(indicateur){
+        while(!aGagné){
             for(int l = 0; l < longueur; l++){
                 for(int h = 0; h < hauteur; h++){
-                    if(plateau[h][l] == "X "){
+                    if(plateau[h][l] == 'X'){
                         compteur++;
                     }else{
                         compteur = 0;
                     }
                     if(compteur >= 4){
                         System.out.println("Le joueur X gagne !");
-                        indicateur = false;
+                        aGagné = true;
                     }
                 }
             }
             break;
         }
-        return indicateur;
+        return aGagné;
     }
     
-    public static boolean VictoireOVertical(){
+    public static boolean victoireOVertical(){
                 
-        boolean indicateur = true;
+        boolean aGagné = false;
         int compteur = 0;
         
-        while(indicateur){
+        while(!aGagné){
             for(int l = 0; l < longueur; l++){
                 for(int h = 0; h < hauteur; h++){
-                    if(plateau[h][l] == "O "){
+                    if(plateau[h][l] == 'O'){
                         compteur++;
                     }else{
                         compteur = 0;
                     }
                     if(compteur >= 4){
                         System.out.println("Le joueur O gagne !");
-                        indicateur = false;
+                        aGagné = true;
                     }
                 }
             }
             break;
         }
-        return indicateur;
+        return aGagné;
     }
     
-    public static boolean VictoireXDiagonaleNOSE(){
+    public static boolean victoireXDiagonaleNOSE(){
     
-        boolean indicateur = true;
+        boolean aGagné = false;
         int compteur = 0;
         int compteurColonne = 1;
         int compteurLigne = 1;
         boolean verif = false;
         
-        while(indicateur){
+        while(!aGagné){
             for(int l = 0; l < longueur; l++){
                 for(int h = 0; h < hauteur; h++){
-                    if(plateau[h][l] == "X "){
+                    if(plateau[h][l] == 'X'){
                         compteur++;
                         verif = true;
                         while(verif){
                             if(l + compteurColonne <= longueur - 1 && h + compteurLigne <= hauteur - 1){
-                                if(plateau[h + compteurLigne][l + compteurColonne] == "X "){
+                                if(plateau[h + compteurLigne][l + compteurColonne] == 'X'){
                                     compteur++;
                                 }
                             }
@@ -241,13 +241,13 @@ public class Puissance4 {
                             if(compteur >= 4){
                                 System.out.println("Joueur X gagne !");
                                 verif = false;
-                                indicateur = false;
+                                aGagné = true;
                                 break;
                             }                            
                         }
                     }  
                     if(compteur >= 4){
-                        indicateur = false;
+                        aGagné = true;
                         break;
                     }
                     compteur = 0;
@@ -257,26 +257,26 @@ public class Puissance4 {
             }
             break;
         }
-        return indicateur;
+        return aGagné;
     }
     
-    public static boolean VictoireODiagonaleNOSE(){
+    public static boolean victoireODiagonaleNOSE(){
         
-        boolean indicateur = true;
+        boolean aGagné = false;
         int compteur = 0;
         int compteurColonne = 1;
         int compteurLigne = 1;
         boolean verif = false;
         
-        while(indicateur){
-            for(int l = 0; l < longueur; l++){
-                for(int h = 0; h < hauteur; h++){
-                    if(plateau[h][l] == "O "){
+        while(!aGagné){
+            for(int x = 0; x < longueur; x++){
+                for(int y = 0; y < hauteur; y++){
+                    if(plateau[y][x] == 'O'){
                         compteur++;
                         verif = true;
                         while(verif){
-                            if(l + compteurColonne <= longueur - 1 && h + compteurLigne <= hauteur - 1){
-                                if(plateau[h + compteurLigne][l + compteurColonne] == "O "){
+                            if(x + compteurColonne <= longueur - 1 && y + compteurLigne <= hauteur - 1){
+                                if(plateau[y + compteurLigne][x + compteurColonne] == 'O'){
                                     compteur++;
                                 }
                             }
@@ -290,13 +290,13 @@ public class Puissance4 {
                             if(compteur >= 4){
                                 System.out.println("Joueur O gagne !");
                                 verif = false;
-                                indicateur = false;
+                                aGagné = true;
                                 break;
                             }                            
                         }
                     }  
                     if(compteur >= 4){
-                        indicateur = false;
+                        aGagné = true;
                         break;
                     }
                     compteur = 0;
@@ -306,26 +306,26 @@ public class Puissance4 {
             }
             break;
         }
-        return indicateur;
+        return aGagné;
     }
     
-    public static boolean VictoireXDiagonaleNESO(){
+    public static boolean victoireXDiagonaleNESO(){
         
-        boolean indicateur = true;
+        boolean aGagné = false;
         int compteur = 0;
         int compteurColonne = 1;
         int compteurLigne = 1;
         boolean verif = false;
         
-        while(indicateur){
+        while(!aGagné){
             for(int l = 0; l < longueur; l++){
                 for(int h = 0; h < hauteur; h++){
-                    if(plateau[h][l] == "X "){
+                    if(plateau[h][l] == 'X'){
                         compteur++;
                         verif = true;
                         while(verif){
                             if(h - compteurColonne >=0 && l - compteurLigne >= 0){
-                                if(plateau[h - compteurLigne][l - compteurColonne] == "X "){
+                                if(plateau[h - compteurLigne][l - compteurColonne] == 'X'){
                                     compteur++;
                                 }
                             }
@@ -339,13 +339,13 @@ public class Puissance4 {
                             if(compteur >= 4){
                                 System.out.println("Joueur X gagne !");
                                 verif = false;
-                                indicateur = false;
+                                aGagné = true;
                                 break;
                             }                            
                         }
                     }  
                     if(compteur >= 4){
-                        indicateur = false;
+                        aGagné = true;
                         break;
                     }
                     compteur = 0;
@@ -355,26 +355,26 @@ public class Puissance4 {
             }
             break;
         }
-        return indicateur;
+        return aGagné;
     }
     
-    public static boolean VictoireODiagonaleNESO(){
+    public static boolean victoireODiagonaleNESO(){
         
-        boolean indicateur = true;
+        boolean aGagné = false;
         int compteur = 0;
         int compteurColonne = 1;
         int compteurLigne = 1;
         boolean verif = false;
         
-        while(indicateur){
+        while(!aGagné){
             for(int l = 0; l < longueur; l++){
                 for(int h = 0; h < hauteur; h++){
-                    if(plateau[h][l] == "O "){
+                    if(plateau[h][l] == 'O'){
                         compteur++;
                         verif = true;
                         while(verif){
                             if(h - compteurColonne >=0 && l - compteurLigne >= 0){
-                                if(plateau[h - compteurLigne][l - compteurColonne] == "O "){
+                                if(plateau[h - compteurLigne][l - compteurColonne] == 'O'){
                                     compteur++;
                                 }
                             }
@@ -388,13 +388,13 @@ public class Puissance4 {
                             if(compteur >= 4){
                                 System.out.println("Joueur O gagne !");
                                 verif = false;
-                                indicateur = false;
+                                aGagné = true;
                                 break;
                             }                            
                         }
                     }  
                     if(compteur >= 4){
-                        indicateur = false;
+                        aGagné = true;
                         break;
                     }
                     compteur = 0;
@@ -404,28 +404,18 @@ public class Puissance4 {
             }
             break;
         }
-        return indicateur;
+        return aGagné;
     }
     
-    public static boolean VerifX(){
+    public static boolean verifX(){
         
-        boolean indicateur = true;
-        
-        if(!VictoireXHorizontal()|| !VictoireXVertical()|| !VictoireXDiagonaleNOSE()|| !VictoireXDiagonaleNESO()){
-            indicateur = false;
-        }
-        return indicateur;
+        return victoireXDiagonaleNESO() || victoireXDiagonaleNOSE() || victoireXHorizontal() || victoireXVertical();
     }
 
-    public static boolean VerifO(){
+    public static boolean verifO(){
         
-        boolean indicateur = true;
-       
-        if(!VictoireOHorizontal() || !VictoireOVertical() || !VictoireODiagonaleNOSE()|| !VictoireODiagonaleNESO()){
-            indicateur = false;
-        }
-        return indicateur;
-    }
+        return victoireODiagonaleNESO() || victoireODiagonaleNOSE() || victoireOHorizontal() || victoireOVertical();
+    }                 
 }
 
 
