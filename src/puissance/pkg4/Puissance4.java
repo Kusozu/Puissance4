@@ -325,7 +325,7 @@ public class Puissance4 {
                         verif = true;
                         while(verif){
                             if(h - compteurColonne >=0 && l - compteurLigne >= 0){
-                                if(plateau[h + compteurLigne][l - compteurColonne] == "X "){
+                                if(plateau[h - compteurLigne][l - compteurColonne] == "X "){
                                     compteur++;
                                 }
                             }
@@ -374,7 +374,7 @@ public class Puissance4 {
                         verif = true;
                         while(verif){
                             if(h - compteurColonne >=0 && l - compteurLigne >= 0){
-                                if(plateau[h + compteurLigne][l - compteurColonne] == "O "){
+                                if(plateau[h - compteurLigne][l - compteurColonne] == "O "){
                                     compteur++;
                                 }
                             }
