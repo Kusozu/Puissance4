@@ -366,49 +366,42 @@ public class Puissance4 {
         int compteurLigne = 1;
         boolean verif = false;
         
-        while(!aGagné){
-            for(int l = 0; l < longueur; l++){
-                for(int h = 0; h < hauteur; h++){
-                    if(plateau[h][l] == 'O'){
-                        compteur++;
-                        verif = true;
-                        while(verif){
-                            if(h - compteurColonne >=0 && l - compteurLigne >= 0){
-                                if(plateau[h - compteurLigne][l - compteurColonne] == 'O'){
-                                    compteur++;
-                                }
+        for(int l = 0; l < longueur; l++){
+            for(int h = 0; h < hauteur; h++){
+                if(plateau[h][l] == 'O'){
+                    compteur++;
+                    verif = true;
+                    while(verif){
+                        if(h - compteurColonne >=0 && l - compteurLigne >= 0){
+                            if(plateau[h - compteurLigne][l - compteurColonne] == 'O'){
+                                compteur++;
                             }
-                            compteurColonne++;
-                            compteurLigne++;
-                            
-                            if(compteurColonne == longueur - 1 || compteurLigne == hauteur -1){
-                                verif = false;
-                                break;
-                            }
-                            if(compteur >= 4){
-                                System.out.println("Joueur O gagne !");
-                                verif = false;
-                                aGagné = true;
-                                break;
-                            }                            
                         }
-                    }  
-                    if(compteur >= 4){
-                        aGagné = true;
-                        break;
+                        compteurColonne++;
+                        compteurLigne++;
+
+                        if(compteurColonne == longueur - 1 || compteurLigne == hauteur -1){
+                            verif = false;
+                            break;
+                        }
+                        if(compteur >= 4){
+                            System.out.println("Joueur O gagne !");
+                            verif = false;
+                            aGagné = true;
+                            compteur = 0;
+                            compteurColonne = 1;
+                            compteurLigne = 1;
+                            break;
+                        }                            
                     }
-                    compteur = 0;
-                    compteurColonne = 1;
-                    compteurLigne = 1;
-                }
+                }  
             }
-            break;
         }
+        
         return aGagné;
     }
     
     public static boolean verifX(){
-        
         return victoireXDiagonaleNESO() || victoireXDiagonaleNOSE() || victoireXHorizontal() || victoireXVertical();
     }
 
